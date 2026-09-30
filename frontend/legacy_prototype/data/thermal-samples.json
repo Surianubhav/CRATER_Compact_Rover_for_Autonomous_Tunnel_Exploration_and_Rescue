@@ -1,0 +1,6 @@
+[
+  { "detected": true,  "confidence": 0.91, "bbox": [28, 22, 61, 68], "person_id": 1 },
+  { "detected": true,  "confidence": 0.87, "bbox": [35, 18, 70, 75], "person_id": 1 },
+  { "detected": true,  "confidence": 0.95, "bbox": [22, 30, 55, 80], "person_id": 1 },
+  { "detected": false, "confidence": 0.34, "bbox": null,             "person_id": null }
+]

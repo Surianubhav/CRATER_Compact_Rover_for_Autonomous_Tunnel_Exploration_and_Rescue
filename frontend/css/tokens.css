@@ -1,0 +1,51 @@
+:root {
+  /* -- surfaces ---------------------------------------------------- */
+  --bg: #101417;
+  --panel: #171C20;
+  --panel-header: #1E2429;
+  --border: #2A3239;
+  --border-strong: #3A444C;
+
+  /* -- text ---------------------------------------------------------- */
+  --text-primary: #D5DBE0;
+  --text-secondary: #8B96A0;
+  --text-disabled: #5A646D;
+
+  /* -- status -------------------------------------------------------- */
+  --caution: #C8952E;
+  --danger: #C0413B;
+  --normal: #5B9A72;
+  --rover: #6F9FB5;
+  --person: #E8ECEF;
+
+  /* -- derived translucent fills (for hatch/overlay use only) --------- */
+  --danger-fill: rgba(192, 65, 59, 0.14);
+  --caution-fill: rgba(200, 149, 46, 0.14);
+  --normal-fill: rgba(91, 154, 114, 0.12);
+  --rover-fill: rgba(111, 159, 181, 0.14);
+
+  /* -- typography ------------------------------------------------------ */
+  --font-sans: 'IBM Plex Sans', 'Segoe UI', Arial, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'JetBrains Mono', 'Consolas', monospace;
+
+  --fs-micro: 10px;
+  --fs-small: 11px;
+  --fs-base: 12px;
+  --fs-med: 14px;
+  --fs-large: 18px;
+  --fs-xlarge: 22px;
+
+  /* -- spacing / structure ---------------------------------------------- */
+  --radius: 1px;
+  --border-w: 1px;
+  --gap-xs: 4px;
+  --gap-sm: 8px;
+  --gap-md: 12px;
+  --gap-lg: 16px;
+
+  --top-bar-h: 46px;
+  --left-rail-w: 300px;
+  --right-col-w: 300px;
+  --env-strip-h: 92px;
+  --timeline-h: 46px;
+}

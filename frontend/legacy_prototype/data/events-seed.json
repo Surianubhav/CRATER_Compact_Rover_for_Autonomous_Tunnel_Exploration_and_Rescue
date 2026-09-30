@@ -1,0 +1,6 @@
+[
+  { "message": "Rover connected", "type": "info" },
+  { "message": "Thermal module ready", "type": "info" },
+  { "message": "ESP-03 forwarded sensor packet", "type": "info" },
+  { "message": "MQ-4 reading received", "type": "info" }
+]

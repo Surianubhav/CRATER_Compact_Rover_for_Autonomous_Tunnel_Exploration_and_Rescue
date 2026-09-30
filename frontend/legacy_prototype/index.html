@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MINEGUARD — Rescue Rover Dashboard</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ========================= HEADER ========================= -->
+  <header class="app-header">
+    <div class="header-brand">
+      <h1 class="brand-name">MINEGUARD</h1>
+      <p class="brand-tagline">AI-Powered Thermal &amp; Environmental Rescue Rover</p>
+    </div>
+
+    <div class="header-status" id="status-strip">
+      <div class="status-item">
+        <span class="status-dot status-ok" id="dot-system"></span>
+        <span class="status-label">System</span>
+        <span class="status-value" id="status-system">Online</span>
+      </div>
+      <div class="status-item">
+        <span class="status-dot status-ok" id="dot-rover"></span>
+        <span class="status-label">Rover</span>
+        <span class="status-value" id="status-rover">Connected</span>
+      </div>
+      <div class="status-item">
+        <span class="status-dot status-ok" id="dot-sensors"></span>
+        <span class="status-label">Sensors</span>
+        <span class="status-value" id="status-sensors">6/6 Online</span>
+      </div>
+      <div class="status-item">
+        <span class="status-dot status-warn" id="dot-thermal"></span>
+        <span class="status-label">Thermal</span>
+        <span class="status-value" id="status-thermal">Awaiting feed</span>
+      </div>
+      <div class="status-item">
+        <span class="status-dot status-ok" id="dot-mesh"></span>
+        <span class="status-label">Mesh</span>
+        <span class="status-value" id="status-mesh">Connected</span>
+      </div>
+    </div>
+
+    <button id="demo-mode-btn" class="btn btn-outline" aria-pressed="false">
+      Demo mode: <span id="demo-mode-state">Off</span>
+    </button>
+  </header>
+
+  <!-- ==================== TOP ALERT BANNER ==================== -->
+  <div id="alert-banner" class="alert-banner is-hidden" role="alert" aria-live="assertive">
+    <div class="alert-banner-content">
+      <span class="alert-icon">⚠</span>
+      <div class="alert-text">
+        <strong id="alert-title">Possible motionless person</strong>
+        <span id="alert-detail">Person ID 01 · Motionless 02:14 · Confidence 91% · Check required</span>
+      </div>
+    </div>
+    <button id="alert-dismiss-btn" class="alert-dismiss" aria-label="Dismiss alert">✕</button>
+  </div>
+
+  <!-- ========================= MAIN GRID ========================= -->
+  <main class="dashboard-grid">
+
+    <!-- ROVER MAP (integration point for future mapping module) -->
+    <section class="panel map-panel" id="rover-map" aria-label="Rover navigation and environment map">
+      <div class="panel-header">
+        <h2>Rover Navigation / Environment Map</h2>
+        <span class="badge badge-muted">Awaiting data</span>
+      </div>
+
+      <div class="map-placeholder">
+        <div class="map-placeholder-body">
+          <div class="map-glyph">🗺</div>
+          <p class="map-placeholder-title">Mapping module will appear here</p>
+          <p class="map-placeholder-sub">Awaiting rover navigation data&hellip;</p>
+        </div>
+      </div>
+
+      <div class="map-legend">
+        <div class="legend-item"><span class="legend-icon legend-rover">🚙</span>Rover</div>
+        <div class="legend-item"><span class="legend-icon legend-path">⌇</span>Rover path</div>
+        <div class="legend-item"><span class="legend-icon legend-hotspot">●</span>Gas hotspot</div>
+        <div class="legend-item"><span class="legend-icon legend-warnzone">▲</span>Warning zone</div>
+      </div>
+    </section>
+
+    <!-- SENSOR + ENVIRONMENT DATA -->
+    <section class="panel sensor-panel" aria-label="Gas and environmental sensor readings">
+      <div class="panel-header">
+        <h2>Gas Detection</h2>
+      </div>
+
+      <div class="gas-grid">
+        <div class="gas-card" id="mq4-card">
+          <div class="gas-card-top">
+            <span class="gas-name">MQ-4 <span class="gas-sub">(methane)</span></span>
+            <span class="badge" id="mq4-status">Normal</span>
+          </div>
+          <div class="gas-value" id="mq4-value">88</div>
+          <div class="gas-bar-track"><div class="gas-bar-fill" id="mq4-bar"></div></div>
+        </div>
+
+        <div class="gas-card" id="mq7-card">
+          <div class="gas-card-top">
+            <span class="gas-name">MQ-7 <span class="gas-sub">(carbon monoxide)</span></span>
+            <span class="badge" id="mq7-status">Normal</span>
+          </div>
+          <div class="gas-value" id="mq7-value">228</div>
+          <div class="gas-bar-track"><div class="gas-bar-fill" id="mq7-bar"></div></div>
+        </div>
+      </div>
+
+      <p class="threshold-note">Demo thresholds only — not calibrated readings.</p>
+
+      <div class="panel-header panel-header-sub">
+        <h3>Environment</h3>
+      </div>
+
+      <div class="env-grid" id="env-grid">
+        <div class="env-stat">
+          <span class="env-label">Temperature</span>
+          <span class="env-value"><span id="env-temp">25.70</span>&nbsp;°C</span>
+        </div>
+        <div class="env-stat">
+          <span class="env-label">Humidity</span>
+          <span class="env-value"><span id="env-hum">57.60</span>&nbsp;%</span>
+        </div>
+        <div class="env-stat">
+          <span class="env-label">Pressure</span>
+          <span class="env-value"><span id="env-pressure">97627</span>&nbsp;Pa</span>
+        </div>
+        <div class="env-stat">
+          <span class="env-label">Altitude</span>
+          <span class="env-value"><span id="env-alt">312.88</span>&nbsp;m</span>
+        </div>
+        <div class="env-stat env-stat-wide">
+          <span class="env-label">BMP180</span>
+          <span class="env-value"><span class="status-dot status-ok" id="bmp-dot"></span><span id="env-bmp">Sensor OK</span></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- THERMAL HUMAN DETECTION -->
+    <section class="panel thermal-panel" aria-label="Thermal human detection">
+      <div class="panel-header">
+        <h2>Thermal Human Detection</h2>
+        <span class="badge badge-muted">Model integration pending</span>
+      </div>
+
+      <div class="thermal-upload-area" id="thermal-dropzone">
+        <input type="file" id="thermal-file-input" accept="image/*" class="visually-hidden" />
+        <div class="upload-prompt" id="upload-prompt">
+          <div class="upload-glyph">🌡</div>
+          <p><strong>Click to upload</strong> or drag a thermal image here</p>
+          <p class="upload-hint">PNG or JPG · frontend demo only, nothing is sent anywhere</p>
+        </div>
+        <div class="thermal-preview is-hidden" id="thermal-preview">
+          <div class="thermal-image-wrap" id="thermal-image-wrap">
+            <img id="thermal-image" alt="Uploaded thermal image" />
+            <div class="bbox-overlay is-hidden" id="bbox-overlay">
+              <span class="bbox-tag" id="bbox-tag">Person · 91%</span>
+            </div>
+          </div>
+          <div class="thermal-file-meta">
+            <span id="thermal-filename">—</span>
+            <span id="thermal-dimensions">—</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="thermal-controls">
+        <button id="run-detection-btn" class="btn btn-primary" disabled>Run Detection</button>
+        <button id="clear-image-btn" class="btn btn-outline" disabled>Clear</button>
+      </div>
+
+      <div class="thermal-result is-hidden" id="thermal-result"></div>
+    </section>
+
+    <!-- MOTIONLESS PERSON MONITORING -->
+    <section class="panel monitor-panel" aria-label="Motionless person monitoring">
+      <div class="panel-header">
+        <h2>Human Monitoring</h2>
+        <span class="badge" id="monitor-status-badge">Monitoring unavailable</span>
+      </div>
+
+      <div class="monitor-grid" id="monitor-grid">
+        <div class="monitor-row"><span>Person ID</span><span id="monitor-id">—</span></div>
+        <div class="monitor-row"><span>Detection</span><span id="monitor-detection">Awaiting thermal feed</span></div>
+        <div class="monitor-row"><span>Movement</span><span id="monitor-movement">—</span></div>
+        <div class="monitor-row"><span>Motionless duration</span><span id="monitor-duration">—</span></div>
+      </div>
+
+      <button id="simulate-alert-btn" class="btn btn-alert">Simulate Motionless Alert</button>
+      <p class="threshold-note">Demo control — real tracking data will replace this later.</p>
+    </section>
+
+    <!-- ESP MESH NETWORK -->
+    <section class="panel mesh-panel" aria-label="ESP mesh network status">
+      <div class="panel-header">
+        <h2>ESP Mesh Network</h2>
+        <span class="badge badge-ok" id="mesh-network-badge">Connected</span>
+      </div>
+
+      <div class="mesh-summary">
+        <div class="mesh-stat"><span class="env-label">Active nodes</span><span class="mesh-stat-value" id="mesh-active-nodes">5</span></div>
+        <div class="mesh-stat"><span class="env-label">Hops</span><span class="mesh-stat-value" id="mesh-hops">3</span></div>
+        <div class="mesh-stat mesh-stat-wide"><span class="env-label">Current route</span><span class="mesh-stat-value" id="mesh-route-text">ESP-01 → ESP-03 → ESP-05 → Rover</span></div>
+      </div>
+
+      <div class="mesh-path" id="mesh-path"></div>
+      <p class="threshold-note">Mock mesh data — click a node for details.</p>
+
+      <div class="mesh-node-detail is-hidden" id="mesh-node-detail"></div>
+    </section>
+
+    <!-- EVENT LOG -->
+    <section class="panel log-panel" aria-label="System event log">
+      <div class="panel-header">
+        <h2>Event Log</h2>
+      </div>
+      <div class="event-log" id="event-log"></div>
+    </section>
+
+  </main>
+
+  <footer class="app-footer">
+    MINEGUARD prototype &middot; frontend-only demo &middot; all data on this screen is simulated
+  </footer>
+
+  <script src="pipeline.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

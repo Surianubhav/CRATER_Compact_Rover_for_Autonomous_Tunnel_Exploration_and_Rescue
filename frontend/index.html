@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MINESWEEPER &mdash; Mine Reconnaissance Console</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/tokens.css" />
+<link rel="stylesheet" href="css/base.css" />
+<link rel="stylesheet" href="css/components.css" />
+</head>
+<body>
+<div id="app">
+
+  <div class="top-bar" id="top-status-bar"></div>
+
+  <div class="app-main">
+    <div class="left-rail panel">
+      <div id="alerts-panel"></div>
+      <div id="commands-panel"></div>
+    </div>
+
+    <div class="center-col">
+      <div class="map-panel panel" style="border-left:none;border-right:none;">
+        <div class="map-toolbar" id="map-toolbar"></div>
+        <div id="map-canvas" style="flex:1;min-height:0;display:flex;flex-direction:column;"></div>
+        <div id="marker-info-panel" class="marker-info-panel"></div>
+        <div id="dev-scenario-panel"></div>
+      </div>
+      <div class="timeline" id="timeline"></div>
+    </div>
+
+    <div class="right-col">
+      <div class="panel" id="thermal-panel" style="border-top:none;border-right:none;"></div>
+      <div class="panel" id="camera-panel" style="border-top:none;border-right:none;border-bottom:none;"></div>
+      <div class="panel" id="voice-link-panel" style="border-top:none;border-right:none;border-bottom:none;"></div>
+      <div class="panel" id="mesh-network-panel" style="border-top:none;border-right:none;border-bottom:none;"></div>
+    </div>
+  </div>
+
+  <div class="env-strip" id="env-strip"></div>
+
+  <div class="modal-overlay" id="report-modal"></div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/state/store.js"></script>
+<script src="js/lib/format.js"></script>
+<script src="js/lib/dataAge.js"></script>
+<script src="js/lib/api.js"></script>
+<script src="js/lib/ws.js"></script>
+
+<script src="js/components/topStatusBar.js"></script>
+<script src="js/components/alertPanel.js"></script>
+<script src="js/components/eventLog.js"></script>
+<script src="js/components/roverCommandPanel.js"></script>
+<script src="js/components/mineMap.js"></script>
+<script src="js/components/mapToolbar.js"></script>
+<script src="js/components/markerInfoPanel.js"></script>
+<script src="js/components/timeline.js"></script>
+<script src="js/components/thermalPanel.js"></script>
+<script src="js/components/cameraPanel.js"></script>
+<script src="js/components/voiceLink.js"></script>
+<script src="js/components/meshNetwork.js"></script>
+<script src="js/components/environmentStrip.js"></script>
+<script src="js/components/reportPreview.js"></script>
+<script src="js/components/devScenarioPanel.js"></script>
+
+<script src="js/main.js"></script>
+</body>
+</html>

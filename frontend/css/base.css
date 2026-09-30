@@ -1,0 +1,156 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background: none;
+  border: var(--border-w) solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+button:disabled { cursor: not-allowed; opacity: 0.5; }
+input, select {
+  font-family: inherit;
+  font-size: inherit;
+  color: var(--text-primary);
+  background: var(--bg);
+  border: var(--border-w) solid var(--border);
+  border-radius: var(--radius);
+}
+
+.mono { font-family: var(--font-mono); }
+.text-secondary { color: var(--text-secondary); }
+.text-disabled { color: var(--text-disabled); }
+
+.status-normal { color: var(--normal); }
+.status-caution { color: var(--caution); }
+.status-danger { color: var(--danger); }
+
+.hidden { display: none !important; }
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border-strong); }
+
+/* ===================================================================
+   APPLICATION SHELL
+   =================================================================== */
+#app {
+  width: 100vw;
+  height: 100vh;
+  min-width: 1280px;
+  min-height: 720px;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 1fr;
+  background: var(--bg);
+  position: relative;
+}
+
+#app.replay-mode {
+  outline: 2px solid var(--caution);
+  outline-offset: -2px;
+}
+
+.app-main {
+  display: grid;
+  grid-template-columns: var(--left-rail-w) 1fr var(--right-col-w);
+  min-height: 0;
+  border-top: var(--border-w) solid var(--border);
+  border-bottom: var(--border-w) solid var(--border);
+}
+
+/* -- panel primitive -------------------------------------------------- */
+.panel {
+  background: var(--panel);
+  border: var(--border-w) solid var(--border);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.panel-header {
+  background: var(--panel-header);
+  border-bottom: var(--border-w) solid var(--border);
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--fs-small);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  flex: 0 0 auto;
+}
+.panel-header strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+.panel-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+}
+
+/* -- left rail ---------------------------------------------------------- */
+.left-rail {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  min-height: 0;
+  border-right: none;
+}
+
+/* -- center column -------------------------------------------------------- */
+.center-col {
+  display: grid;
+  grid-template-rows: 1fr var(--timeline-h);
+  min-height: 0;
+  min-width: 0;
+  position: relative;
+}
+
+/* -- right column ---------------------------------------------------------- */
+.right-col {
+  display: grid;
+  grid-template-rows: auto auto auto 1fr;
+  min-height: 0;
+  border-left: none;
+}
+.right-col > .panel { min-height: 0; overflow: hidden; }
+
+/* -- environment strip ------------------------------------------------------- */
+.env-strip {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  min-height: var(--env-strip-h);
+  border-top: none;
+}
+
+/* -- stale/disconnected treatment (reusable) ------------------------------------ */
+.stale {
+  position: relative;
+  color: var(--text-disabled) !important;
+}
+.stale::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    135deg,
+    rgba(90, 100, 109, 0.06),
+    rgba(90, 100, 109, 0.06) 4px,
+    transparent 4px,
+    transparent 10px
+  );
+}

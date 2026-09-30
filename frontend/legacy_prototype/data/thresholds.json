@@ -1,0 +1,5 @@
+{
+  "mq4": { "warning": 100, "critical": 180 },
+  "mq7": { "warning": 150, "critical": 300 },
+  "_note": "Demo thresholds only, not scientifically calibrated. Replace with real calibrated limits once available from the hardware/chemical-sensing team."
+}
