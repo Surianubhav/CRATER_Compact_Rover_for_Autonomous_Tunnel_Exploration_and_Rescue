@@ -1,0 +1,31 @@
+# ── Core ML / CV ──────────────────────────────────────────────
+# PyTorch is installed separately (see README) because the correct
+# command depends on whether you have an NVIDIA GPU + which CUDA version.
+ultralytics==8.3.*          # YOLOv8 / YOLO11 training, val, inference, tracking
+opencv-python>=4.10          # image + video I/O, drawing boxes
+numpy>=2.1                   # 1.26.* predates Python 3.13 wheel support - relaxed to avoid a source build
+pandas>=2.2.3
+matplotlib>=3.9.2
+pyyaml==6.0.*
+
+# ── Dataset acquisition / annotation ─────────────────────────
+roboflow==1.1.*              # programmatic dataset download in YOLO format
+
+# ── Utilities ─────────────────────────────────────────────────
+tqdm==4.66.*                 # progress bars in preprocessing scripts
+Pillow>=10.4
+
+# ── Stage 3+ (tracking / video) — install when you reach Stage 3 ──
+# lap==0.4.*                 # required by ByteTrack (Ultralytics installs this on demand)
+
+# ── Stage 4 / edge deployment (install later, NOT needed for Stage 1) ──
+# onnx==1.16.*
+# onnxruntime==1.19.*        # onnxruntime-gpu on Jetson / GPU machines instead
+
+# ── MINESWEEPER operator console API (backend/app) ───────────────
+fastapi==0.115.*
+uvicorn[standard]==0.32.*
+pydantic>=2.9
+python-multipart==0.0.*      # required by FastAPI for UploadFile (thermal frame uploads)
+websockets==13.*
+reportlab==4.2.*             # optional: enables GET /api/report/export.pdf; app runs fine without it

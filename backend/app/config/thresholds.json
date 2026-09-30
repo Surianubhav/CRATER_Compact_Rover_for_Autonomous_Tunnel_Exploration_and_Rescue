@@ -1,0 +1,11 @@
+{
+  "_note": "PLACEHOLDER thresholds only, not scientifically calibrated. Replace with values supplied by the mine authority / hardware team before any operational use. Referenced from a single config file (not hardcoded in components) so they can be tuned without touching UI or simulator code.",
+  "ch4_pct": { "unit": "%", "caution": 0.5, "danger": 1.25 },
+  "co_ppm": { "unit": "ppm", "caution": 25, "danger": 50 },
+  "o2_pct": { "unit": "%", "caution_low": 19.5, "danger_low": 18.0, "note": "O2 caution/danger are LOWER bounds -- oxygen deficiency is the hazard." },
+  "temperature_c": { "unit": "\u00b0C", "caution": 34, "danger": 40 },
+  "humidity_pct": { "unit": "%", "caution": 85, "danger": 95 },
+  "pressure_pa": { "unit": "Pa", "caution_delta": 800, "danger_delta": 1500 },
+  "data_age_seconds": { "caution": 5, "danger": 30 },
+  "thermal_hotspot_c": { "caution": 45, "danger": 60 }
+}
