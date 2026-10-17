@@ -131,66 +131,6 @@ The system architecture and data flow are illustrated in the following diagrams.
 
 *Technical workflow illustrating sensor data processing, rover control, telemetry transmission, and operator interaction.*
 
-### High-level data flow
-
-```text
-                 UNDERGROUND ENVIRONMENT
-                           |
-                           v
-                 +-------------------+
-                 |  Perception Layer |
-                 |                   |
-                 | LiDAR / RGB Camera|
-                 | Environmental    |
-                 | and Motion Sensors|
-                 +---------+---------+
-                           |
-                           v
-                 +-------------------+
-                 | Onboard Computing |
-                 |                   |
-                 | Mapping           |
-                 | Perception        |
-                 | Mission Logic     |
-                 +---------+---------+
-                           |
-                 Commands / Telemetry
-                           |
-                           v
-                 +-------------------+
-                 | Embedded Control  |
-                 |                   |
-                 | Sensor Acquisition|
-                 | Odometry           |
-                 | Motor Control      |
-                 +---------+---------+
-                           |
-                           v
-                 +-------------------+
-                 | Tracked Drive     |
-                 | Left + Right      |
-                 +-------------------+
-
-                           |
-                           v
-                 +-------------------+
-                 | Communication     |
-                 | Rover + Relays    |
-                 +---------+---------+
-                           |
-                           v
-                 +-------------------+
-                 | Operator Dashboard|
-                 |                   |
-                 | Maps / Telemetry  |
-                 | Camera / Alerts   |
-                 +-------------------+
-```
-
-The diagram represents the intended functional architecture. Exact interfaces, data rates, and the implementation status of each connection depend on the hardware and software configuration.
-
----
-
 ## 📡 Mesh Networking and Relay Deployment
 
 Communication is one of the central challenges in underground robotics.
@@ -245,43 +185,6 @@ CRATER's communication design considers Wi-Fi HaLow as a potential or configured
 - **IP networking:** Compatible implementations can support IP-based data transport and familiar network tooling.
 - **Telemetry transmission:** Sensor readings, status updates, and control messages are natural candidates for wireless transport.
 - **Distributed infrastructure:** Multiple supported network nodes can help extend connectivity beyond a single radio link.
-
-### Communication architecture
-
-```text
-+------------------+
-| CRATER Rover     |
-| LiDAR / Sensors  |
-| Telemetry        |
-+--------+---------+
-         |
-         v
-+------------------+
-| Rover Radio Node |
-+--------+---------+
-         |
-         v
-+------------------+
-| Relay Node 1     |
-+--------+---------+
-         |
-         v
-+------------------+
-| Relay Node 2     |
-+--------+---------+
-         |
-         v
-+------------------+
-| Surface Gateway  |
-+--------+---------+
-         |
-         v
-+------------------+
-| Operator Station |
-+------------------+
-```
-
-The diagram illustrates a possible relay topology; the actual hop count and routing depend on the deployed radio hardware and network configuration.
 
 ### Practical considerations
 
@@ -415,37 +318,6 @@ CRATER's motion-estimation approach uses:
 
 Combining these measurements can improve motion estimation compared with relying on any one source alone. However, sensor fusion does not automatically eliminate drift; calibration and validation remain essential.
 
-### Mapping workflow
-
-```text
-LiDAR measurements
-        |
-        v
-Data acquisition
-        |
-        v
-Sensor and timestamp handling
-        |
-        +--------------------+
-        |                    |
-        v                    v
-  Wheel odometry          IMU data
-        |                    |
-        +----------+---------+
-                   |
-                   v
-          Motion estimation
-                   |
-                   v
-        Spatial data processing
-                   |
-                   v
-          Point cloud / map
-                   |
-                   v
-        Operator visualization
-```
-
 ### Mapping development goals
 
 - Improve odometry calibration.
@@ -513,35 +385,6 @@ Visible-light imagery can help with:
 Thermal imaging can help reveal temperature patterns when conventional visual observation is limited by poor illumination.
 
 Potential applications include identifying warm objects and investigating possible human presence. Thermal anomalies alone do not confirm that an object is a person or a survivor.
-
-### AI-assisted perception
-
-An AI perception pipeline can process camera frames to identify objects or regions of interest, then present the resulting observations to the operator.
-
-A possible processing sequence is:
-
-```text
-Camera frame
-     |
-     v
-Preprocessing
-     |
-     v
-Model inference
-     |
-     v
-Detection / classification
-     |
-     v
-Temporal association
-     |
-     v
-Operator alert or visualization
-```
-
-Model selection, inference hardware, confidence thresholds, temporal tracking, and the actual detection classes should be documented according to the model used in the current implementation.
-
----
 
 ## 🖥️ Live Operator Dashboard
 
@@ -641,54 +484,6 @@ The final stack should reflect the actual libraries, frameworks, firmware, and t
 - Record known limitations and expected behavior.
 
 ---
-
-## 📂 Repository Structure
-
-The following is a suggested organization for the project. Adjust the directory names to match the actual contents of this repository.
-
-```text
-CRATER_Compact_Rover_for_Autonomous_Tunnel_Exploration_and_Rescue/
-│
-├── README.md
-│
-├── images/
-│   ├── rover.jpg
-│   ├── rover_chassis.jpg
-│   ├── mesh_network.png
-│   ├── system_architecture.png
-│   ├── dashboard.png
-│   ├── point_cloud.png
-│   ├── lidar_map.png
-│   └── team.jpg
-│
-├── firmware/
-│   └── [embedded controller firmware]
-│
-├── mapping/
-│   └── [LiDAR mapping and odometry software]
-│
-├── perception/
-│   └── [camera processing and AI models]
-│
-├── dashboard/
-│   └── [operator interface]
-│
-├── communication/
-│   └── [networking and telemetry]
-│
-├── docs/
-│   ├── architecture.md
-│   ├── hardware.md
-│   ├── calibration.md
-│   └── testing.md
-│
-└── LICENSE
-```
-
-> This tree is a documentation template, not a claim that these directories already exist. Preserve the actual repository structure when integrating the README.
-
----
-
 ## 🛠️ Getting Started
 
 Because CRATER integrates physical hardware and multiple software subsystems, the setup process depends on the particular module being used.
@@ -762,47 +557,6 @@ Begin with stationary sensor checks, then test drivetrain movement, mapping, tel
 
 ---
 
-## 🎥 Demonstrations
-
-Replace the placeholders below with actual recordings and screenshots from the working prototype.
-
-### Full project demonstration
-
-**YouTube:** [Watch the CRATER project demonstration](YOUTUBE_DEMO_LINK)
-
-### Rover in action
-
-<p align="center">
-  <a href="YOUTUBE_DEMO_LINK">
-    <img src="images/rover.jpg" alt="CRATER rover demonstration thumbnail" width="80%">
-  </a>
-</p>
-
-### Mesh networking
-
-<p align="center">
-  <img src="images/mesh_network.png" alt="CRATER wireless relay network" width="85%">
-</p>
-
-### LiDAR point cloud
-
-<p align="center">
-  <img src="images/point_cloud.png" alt="CRATER point-cloud output" width="85%">
-</p>
-
-### Reconstructed map
-
-<p align="center">
-  <img src="images/lidar_map.png" alt="CRATER LiDAR mapping output" width="85%">
-</p>
-
-### Operator dashboard
-
-<p align="center">
-  <img src="images/dashboard.png" alt="CRATER operator dashboard" width="95%">
-</p>
-
----
 
 ## 🚧 Limitations and Future Work
 
@@ -879,27 +633,3 @@ Add each team member's name, project responsibilities, and relevant links below.
 Update the table to include the actual team members and their respective contributions.
 
 ---
-
-## 🙌 Acknowledgements
-
-We acknowledge Smart India Hackathon 2026 for the opportunity to develop a hardware-oriented solution to underground mine safety and rescue challenges.
-
-We also recognize the open-source robotics, embedded systems, mapping, and computer vision communities whose tools and research help make experimental robotic platforms more accessible.
-
----
-
-## 📜 License
-
-Add the appropriate open-source license to the repository before inviting others to reuse, modify, or redistribute the project.
-
-If you intend to publish CRATER as an open-source project, consider a license that clearly addresses reuse of the software, documentation, and any separately licensed hardware designs.
-
----
-
-## ⭐ Support the Project
-
-If you find CRATER interesting, consider starring the repository, exploring the implementation, or contributing improvements.
-
-Ideas, issue reports, testing feedback, and contributions to the mapping, embedded control, perception, networking, and dashboard subsystems are welcome.
-
-**CRATER — exploring the unknown before sending people into it.**
