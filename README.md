@@ -6,7 +6,7 @@
 [![Watch the demo](https://img.shields.io/badge/▶_Watch_Demo-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/ypSJ9OmCvYg?si=MKHVfJJ0d8UbY9vU)
 
 <p align="center">
-  <img src="media/rover.jpg" alt="CRATER rover prototype" width="85%">
+  <img src="Media/rover.jpeg" alt="CRATER rover prototype" width="85%">
 </p>
 
 ---
@@ -38,7 +38,7 @@ Built by **Team Treadmill** for Smart India Hackathon 2026.
 ## How it works
 
 <p align="center">
-  <img src="media/system_architecture.png" alt="CRATER system architecture" width="100%">
+  <img src="Media/system_architecture.png" alt="CRATER system architecture" width="100%">
 </p>
 
 - **Raspberry Pi**: the brain. Runs mapping, human detection and route planning on board, no internet needed.
@@ -53,7 +53,7 @@ Odometry comes from wheel encoders + IMU, fused with LiDAR for mapping.
 ## Mesh network
 
 <p align="center">
-  <img src="media/mesh_network.jpg" alt="CRATER relay mesh network" width="85%">
+  <img src="Media/mesh_network.jpg" alt="CRATER relay mesh network" width="85%">
 </p>
 
 The rover carries relay nodes in a magazine on its back and deploys them as it goes deeper. Each node extends the link, so telemetry can hop back to the surface gateway instead of relying on one radio path.
@@ -63,8 +63,8 @@ The rover carries relay nodes in a magazine on its back and deploys them as it g
 ## Mapping
 
 <p align="center">
-  <img src="media/point_cloud.png" alt="LiDAR point cloud" width="48%">
-  <img src="media/lidar_map.png" alt="LiDAR map" width="48%">
+  <img src="Media/point_cloud.png" alt="LiDAR point cloud" width="48%">
+  <img src="Media/lidar_map.png" alt="LiDAR map" width="48%">
 </p>
 
 *Left: Point cloud from the rover's LiDAR. Right: the 2D map generated from it.*
@@ -74,7 +74,7 @@ The rover carries relay nodes in a magazine on its back and deploys them as it g
 ## Dashboard
 
 <p align="center">
-  <img src="media/dashboard.png" alt="CRATER operator dashboard" width="95%">
+  <img src="Media/dashboard.jpeg" alt="CRATER operator dashboard" width="95%">
 </p>
 
 Live map, camera and thermal feeds, gas/temperature readings, connectivity status and hazard alerts.
@@ -118,7 +118,7 @@ CRATER is a working hardware prototype built for a hackathon. It has **not** bee
 ## Team Treadmill
 
 <p align="center">
-  <img src="media/team.jpg" alt="Team Treadmill" width="85%">
+  <img src="Media/team.jpg" alt="Team Treadmill" width="85%">
 </p>
 
 | Name | Role | Links |
