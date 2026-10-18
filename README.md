@@ -4,7 +4,6 @@
 *Send a robot in first, not people.*
 
 [![Watch the demo](https://img.shields.io/badge/▶_Watch_Demo-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/ypSJ9OmCvYg?si=MKHVfJJ0d8UbY9vU)
-![SIH 2026](https://img.shields.io/badge/Smart_India_Hackathon-2026-blue?style=for-the-badge)
 
 <p align="center">
   <img src="media/rover.jpg" alt="CRATER rover prototype" width="85%">
@@ -68,7 +67,7 @@ The rover carries relay nodes in a magazine on its back and deploys them as it g
   <img src="media/lidar_map.png" alt="LiDAR map" width="48%">
 </p>
 
-*Left: 3D point cloud from the rover's LiDAR. Right: the 2D map generated from it.*
+*Left: Point cloud from the rover's LiDAR. Right: the 2D map generated from it.*
 
 ---
 
@@ -124,8 +123,9 @@ CRATER is a working hardware prototype built for a hackathon. It has **not** bee
 
 | Name | Role | Links |
 |---|---|---|
-| Member 1 | | |
-| Member 2 | | |
-| Member 3 | | |
-| Member 4 | | |
-| Member 5 | | |
+| Anubhav Suri | CAD, Electronics and Mapping Systems | https://www.linkedin.com/in/anubhav-suri-79a084321 |
+| Abhinav Saini | Embedded Control System | https://www.linkedin.com/in/abhinav-saini-a0b118313 |
+| Arsh Handa | Electronics Sensor Fusion | https://www.linkedin.com/in/arsh-handa-08422331a |
+| Aarush Thakur | Communication and Documentation | https://www.linkedin.com/in/aarush-thakur-profile19022006 |
+| Manjot Kaur | Software and AI | https://www.linkedin.com/in/manjot-kaur-124541304 |
+| Jayostu Chanda | Mechanical CAD Design | https://www.linkedin.com/in/jayostu-chanda-028a15247 |
