@@ -53,7 +53,7 @@ Odometry comes from wheel encoders + IMU, fused with LiDAR for mapping.
 ## Mesh network
 
 <p align="center">
-  <img src="Media/mesh_network.jpg" alt="CRATER relay mesh network" width="85%">
+  <img src="Media/mesh_network.png" alt="CRATER relay mesh network" width="85%">
 </p>
 
 The rover carries relay nodes in a magazine on its back and deploys them as it goes deeper. Each node extends the link, so telemetry can hop back to the surface gateway instead of relying on one radio path.
